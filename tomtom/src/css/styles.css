@@ -1,0 +1,33 @@
+body {
+	margin: 0;
+}
+
+#map {
+	height: 800px;
+	width: 100%;
+}
+
+
+h1 {
+	color: white;
+	background-color: black;
+}
+
+ul>li {
+	color: darkcyan;
+	list-style: none;
+	margin: 0 5px;
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.25);
+}
+
+
+ul>li:hover {
+	background-color: darkcyan;
+	color: white;
+}
+
+
+ul {
+	display: flex;
+}
