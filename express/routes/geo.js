@@ -14,8 +14,8 @@ router.get('/', async function (req, res, next) {
     // https://api.ipgeolocation.io/ipgeo?apiKey=d64aa29252fe4a60b04461f4b28adbab&ip=
     // let remote = req.socket.remoteAddress;
 
-    let myPublicIp = "136.23.16.14";
-    console.log("My super public IP address is: " + myPublicIp);
+    // let myPublicIp = "136.23.16.14"; // use this static ip from ottawa if needed for testing
+    console.log("Getting geo location for IP address: " + myPublicIp);
     let url = `https://api.ipgeolocation.io/ipgeo?apiKey=740cdb97d17344a8bc61d12d3fa2229c&ip=${myPublicIp}`;
     let fetch = await axios.get(url);
 
@@ -51,12 +51,10 @@ router.get('/hydrants', async function (req, res, next) {
 let updatePublicIp = () => {
     http.get({ 'host': 'api.ipify.org', 'port': 80, 'path': '/' }, function (resp) {
         resp.on('data', function (ip) {
-            console.log("My public IP address is: " + ip);
             myPublicIp = ip;
-            return ip;
+            console.log("Public IP address updated to: " + myPublicIp);
         });
     });
-    console.log("My ppublic IP address is: " + myPublicIp);
 };
 
 updatePublicIp();
