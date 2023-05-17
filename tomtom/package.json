@@ -26,7 +26,12 @@
 		"webpack-cli": "^5.0.1"
 	},
 	"dependencies": {
+		"@mapbox/polyline": "github:mapbox/polyline",
 		"@tomtom-international/web-sdk-maps": "^6.23.0",
-		"@tomtom-international/web-sdk-services": "^6.23.0"
+		"@tomtom-international/web-sdk-services": "^6.23.0",
+		"leaflet": "^1.9.3",
+		"polyline": "^0.2.0",
+		"polyline-encoded": "^0.0.9",
+		"tomtom-sdk": "^1.0.0"
 	}
 }

@@ -3,5 +3,6 @@
 
 export default async () => {
     let res = await fetch("https://localhost:7777/geo");
+    console.log(res);
     return res.json();
 }
