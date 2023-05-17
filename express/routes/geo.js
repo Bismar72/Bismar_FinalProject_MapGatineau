@@ -3,15 +3,20 @@ const router = require('express').Router();
 const axios = require('axios');
 const cors = require('cors');
 const { map } = require('../app');
+const http = require('http');
 
 router.use(cors());
+
+let myPublicIp = [];
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
     // https://api.ipgeolocation.io/ipgeo?apiKey=d64aa29252fe4a60b04461f4b28adbab&ip=
     // let remote = req.socket.remoteAddress;
-    let remote = "74.14.208.182";
-    let url = `https://api.ipgeolocation.io/ipgeo?apiKey=740cdb97d17344a8bc61d12d3fa2229c&ip=${remote}`;
+
+    let myPublicIp = "136.23.16.14";
+    console.log("My super public IP address is: " + myPublicIp);
+    let url = `https://api.ipgeolocation.io/ipgeo?apiKey=740cdb97d17344a8bc61d12d3fa2229c&ip=${myPublicIp}`;
     let fetch = await axios.get(url);
 
     let lat = fetch.data.latitude;
@@ -43,7 +48,17 @@ router.get('/hydrants', async function (req, res, next) {
     res.json(outData);
 });
 
+let updatePublicIp = () => {
+    http.get({ 'host': 'api.ipify.org', 'port': 80, 'path': '/' }, function (resp) {
+        resp.on('data', function (ip) {
+            console.log("My public IP address is: " + ip);
+            myPublicIp = ip;
+            return ip;
+        });
+    });
+    console.log("My ppublic IP address is: " + myPublicIp);
+};
 
-
+updatePublicIp();
 
 module.exports = router;
